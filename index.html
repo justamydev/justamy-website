@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  .image-container {
+    display: none;
+    text-align: center;
+  }
+  .landscape #image1,
+  .phone #image2,
+  .foldable #emoji {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div id="image1" class="image-container">
+  <img src="image1.svg" alt="Landscape Image">
+</div>
+
+<div id="image2" class="image-container">
+  <img src="image2.svg" alt="Phone Image">
+</div>
+
+<div id="emoji" class="image-container">
+  🚫
+</div>
+
+<script>
+  function detectDeviceType() {
+    const ua = navigator.userAgent;
+    if (window.matchMedia("(orientation: landscape)").matches && !ua.includes('Mobile')) {
+      document.body.classList.add('landscape');
+    } else if (ua.includes('Mobile')) {
+      document.body.classList.add('phone');
+    } else if (/* condition for foldable device */) {
+      document.body.classList.add('foldable');
+    }
+  }
+
+  window.onload = detectDeviceType;
+</script>
+
+</body>
+</html>
